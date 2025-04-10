@@ -1,6 +1,14 @@
 CREATE DATABASE if not exists compras;
 USE compras;
 
+
+CREATE TABLE if not exists Produtos (
+    ProdutoID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeProduto VARCHAR(50) not null,
+    Quantidade INT,
+    Preco DECIMAL(10,2) not null
+);
+
 CREATE TABLE IF NOT EXISTS Fornecedores (
     FornecedorID INT AUTO_INCREMENT PRIMARY KEY,
     NomeFornecedor VARCHAR(50) NOT NULL
