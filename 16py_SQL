@@ -1,8 +1,11 @@
-CREATE TABLE Produtos (
+CREATE DATABASE if not exists compras;
+USE compras;
+
+CREATE TABLE if not exists Produtos (
     ProdutoID INT AUTO_INCREMENT PRIMARY KEY,
-    NomeProduto VARCHAR(50),
+    NomeProduto VARCHAR(50) not null,
     Quantidade INT,
-    Preco DECIMAL(10,2)
+    Preco DECIMAL(10,2) not null
 );
 
 INSERT INTO Produtos (NomeProduto, Quantidade, Preco) VALUES 
