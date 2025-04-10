@@ -1,1 +1,8 @@
-
+CREATE DATABASE if not exists exercicio;
+USE exercicio;
+CREATE TABLE if not exists Clientes (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) not null,
+    Idade INT not null,
+    Cidade VARCHAR(100) not null
+);
