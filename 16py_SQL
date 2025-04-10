@@ -1,0 +1,11 @@
+CREATE TABLE Produtos (
+    ProdutoID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeProduto VARCHAR(50),
+    Quantidade INT,
+    Preco DECIMAL(10,2)
+);
+
+INSERT INTO Produtos (NomeProduto, Quantidade, Preco) VALUES 
+    ('Cadeira', 1, 99.99),
+    ('Pincel', 3, 4.49),
+    ('Tinta', 2, 70.99);
