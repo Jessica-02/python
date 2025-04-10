@@ -23,3 +23,6 @@ CREATE TABLE IF NOT EXISTS Estoque (
     FOREIGN KEY (ProdutoID) REFERENCES Produtos(ProdutoID),
     FOREIGN KEY (FornecedorID) REFERENCES Fornecedores(FornecedorID)
 );
+
+
+ALTER TABLE Estoque ADD COLUMN Informações VARCHAR(300);
