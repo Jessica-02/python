@@ -1,0 +1,74 @@
+import os
+
+tarefas = []
+
+def limpar():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def entrada(msg):
+    return input(msg).strip()
+
+def adicionar():
+    tarefa = {
+        'nome': entrada("Tarefa: "),
+        'descricao': entrada("Descrição: "),
+        'prioridade': entrada("Prioridade (alta/média/baixa): ").lower(),
+        'categoria': entrada("Categoria: "),
+        'concluida': False
+    }
+    tarefas.append(tarefa)
+    print("Tarefa adicionada!\n")
+
+def listar():
+    if not tarefas:
+        print("Nenhuma tarefa.\n")
+        return
+    for i, t in enumerate(tarefas, 1):
+        status = "Concluída" if t['concluida'] else "Pendente"
+        print(f"{i}. {t['nome']} - {status}")
+        print(f"   {t['descricao']} | {t['prioridade']} | {t['categoria']}\n")
+
+def concluir():
+    listar()
+    try:
+        i = int(entrada("Número da tarefa concluída: ")) - 1
+        if 0 <= i < len(tarefas):
+            tarefas[i]['concluida'] = True
+            print("Tarefa concluída!\n")
+        else:
+            print("Número inválido.\n")
+    except:
+        print("Entrada inválida.\n")
+
+def filtrar(chave):
+    valor = entrada(f"{chave.capitalize()}: ").lower()
+    filtradas = [t for t in tarefas if t[chave].lower() == valor]
+    if filtradas:
+        for t in filtradas:
+            print(f"- {t['nome']} ({'Prioridade: ' + t['prioridade'] if chave == 'categoria' else 'Categoria: ' + t['categoria']})")
+    else:
+        print(f"Nenhuma tarefa com essa {chave}.\n")
+
+def menu():
+    opcoes = {
+        '1': adicionar,
+        '2': listar,
+        '3': concluir,
+        '4': lambda: filtrar('prioridade'),
+        '5': lambda: filtrar('categoria')
+    }
+
+    while True:
+        print("\n=== GERENCIADOR DE TAREFAS ===")
+        print("1. Adicionar tarefa\n2. Listar tarefas\n3. Marcar como concluída")
+        print("4. Filtrar por prioridade\n5. Filtrar por categoria\n6. Sair")
+        
+        escolha = entrada("Opção: ")
+        limpar()
+        if escolha == '6':
+            print("Até mais!")
+            break
+        opcoes.get(escolha, lambda: print("Opção inválida.\n"))()
+
+if __name__ == "__main__":
+    menu()
