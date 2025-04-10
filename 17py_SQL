@@ -1,0 +1,17 @@
+CREATE DATABASE if not exists compras;
+USE compras;
+
+CREATE TABLE IF NOT EXISTS Fornecedores (
+    FornecedorID INT AUTO_INCREMENT PRIMARY KEY,
+    NomeFornecedor VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Estoque (
+    EstoqueID INT AUTO_INCREMENT PRIMARY KEY,
+    ProdutoID INT,
+    FornecedorID INT,
+    Quantidade INT NOT NULL,
+    DataEntrada DATE NOT NULL,
+    FOREIGN KEY (ProdutoID) REFERENCES Produtos(ProdutoID),
+    FOREIGN KEY (FornecedorID) REFERENCES Fornecedores(FornecedorID)
+);
